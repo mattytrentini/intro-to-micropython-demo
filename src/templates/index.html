@@ -1,0 +1,21 @@
+{% args message %}
+<!doctype html>
+<html>
+  <head>
+    <title>Introduction to MicroPython Demo</title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <h1>Introduction to MicroPython Demo</h1>
+    {% if message %}
+    <p>Your message: "<b>{{ message }}</b>" has been queued!</p>
+    {% endif %}
+    <form method="POST">
+      <p>
+        What message would you like to display?
+        <input type="text" name="message" autofocus />
+      </p>
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
