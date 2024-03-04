@@ -31,16 +31,15 @@ async def update_led_display() -> None:
         await asyncio.sleep_ms(1_000)
 
 async def start_webserver() -> None:
-    await app.run(port=80, debug=True)
+    print("Web server starting...")
+    await app.start_server(port=80, debug=True)
 
 async def main():
     webserver_task = asyncio.create_task(start_webserver())
-    print("server started...")
-
     display_task = asyncio.create_task(update_led_display())
-    repl = asyncio.create_task(aiorepl.task())
+    repl_task = asyncio.create_task(aiorepl.task())
 
-    await asyncio.gather(display_task, repl)
+    await asyncio.gather(webserver_task, display_task, repl_task)
 
 
 asyncio.run(main())
